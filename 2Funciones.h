@@ -65,55 +65,53 @@ void leerPot() {
 
 void ImprimirPantalla() {
   if (Datos != DatosAnteriores) {
-    Serial.print(" DATOS DIFERENTES ");
     String Salida = "";
     shiftR.print(&Salida);
-    delay(t * 500);
+    delay(t * 100);
     int LargoDatos = Datos.length();
     if (LargoDatos <= NumPantallas) {
-      Serial.println(" datos de 4 o menos caracteres ");
-      shiftR.print(&Datos);
-     } else {
-      Serial.print(" Largo de datos ");
-      Serial.println(LargoDatos);
+        shiftR.print(&Datos);
+    } else {
+      bool modo1 = true;
 
       for (int i = 0; i < LargoDatos; i++) {
-        Serial.println(" posicion de la i ");
-        Serial.println(i);
-        Salida += Datos.charAt(i);
-        shiftR.print(&Salida);
+        if(modo1){
+          Salida += Datos.charAt(i);
+          shiftR.print(&Salida);
+        }else{
+          /*Salida = (Datos.substring(0, 1 + i));
+          shiftR.print(&Salida);*/
+
+          shiftR.print(&(Datos.substring(0, 1 + i)));
+        }
         delay(t * 200);
       }
+
     }
   }
-
   DatosAnteriores = Datos;
 }
 
+/*
 void OtroModo() {
-
-  String Salida = "";
-  int LargoDatos = Datos.length();
-
-  if (LargoDatos <= NumPantallas) {
-    Serial.println(" datos de 4 o menos caracteres ");
-    shiftR.print(&Datos);
-  }
-
-  else {
-
-    for (int i = 0; i < LargoDatos; i++) {
-      Serial.println(" posicion de la i ");
-      Serial.println(i);
-
-
-
-      Serial.print(" SUBSTRING ");
-      Serial.println(Datos.substring(i, i + 4));
-      Salida = (Datos.substring(i, i + 4));
-
-      shiftR.print(&Salida);
-      delay(1000);
+  if (Datos != DatosAnteriores) {
+    String Salida = "";
+    shiftR.print(&Salida);
+    delay(t * 100);
+    int LargoDatos = Datos.length();
+    if (LargoDatos <= NumPantallas) 
+      shiftR.print(&Datos);
     }
+    else {
+      for (int i = 0; i < LargoDatos; i++) {
+        //Salida = (Datos.substring(i, i + 4));
+        Salida = (Datos.substring(0, 1 + i));
+        shiftR.print(&Salida);
+        delay(t*1500);
+      }
+      delay(t*100);
+    }
+    DatosAnteriores = Datos;    
   }
 }
+*/

@@ -8,14 +8,12 @@ void setup() {
   saludo();
   Datos = "15.600.547";
   ImprimirPantalla();
- // OtroModo();
 }
 
 
 void loop() {
   leerPot();
   ImprimirPantalla();
-
 
   delay(t);
 }
